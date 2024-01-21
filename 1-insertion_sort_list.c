@@ -30,23 +30,21 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *current, *insertee;
 
-	current = *list;
-	for (; current != NULL && current->next != NULL; current = current->next)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
+	current = (*list)->next;
+
+	while (current != NULL)
 	{
-		while (current->next != NULL &&
-			   current->n > current->next->n)
+		insertee = current;
+		while (insertee->prev != NULL &&
+			   insertee->n < insertee->prev->n)
 		{
-			swaplist(current, current->next);
-			insertee = current->prev;
+			swaplist(insertee->prev, insertee);
+			if (insertee->prev == NULL)
+				*list = insertee;
 			print_list(*list);
-			while (insertee->prev != NULL &&
-				   insertee->n < insertee->prev->n)
-			{
-				swaplist(insertee->prev, insertee);
-				if (insertee->prev == NULL)
-					*list = insertee;
-				print_list(*list);
-			}
 		}
+		current = current->next;
 	}
 }
