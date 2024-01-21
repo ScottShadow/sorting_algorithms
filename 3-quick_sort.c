@@ -22,26 +22,26 @@ void swap(int *a, int *b)
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t current, temp, smallest;
+	size_t pivot, current, temp;
 
-	if (size <= 0)
+	if (size <= 1)
 		return;
+
+	pivot = size - 1;
 	current = 0;
-	while (current < size)
+	temp = current - 1;
+
+	while (current <= pivot)
 	{
-		smallest = current;
-		temp = current + 1;
-		while (temp < size)
+		if (array[current] < array[pivot] || current == pivot)
 		{
-			if (array[smallest] > array[temp])
-				smallest = temp;
 			temp++;
-		}
-		if (smallest != current)
-		{
-			swap(&array[smallest], &array[current]);
+			swap(&array[current], &array[temp]);
 			print_array(array, size);
 		}
 		current++;
 	}
+	if (temp > 0)
+		quick_sort(array, temp);
+	quick_sort(array + temp + 1, size - temp - 1);
 }
