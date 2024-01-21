@@ -49,8 +49,11 @@ void selection_sort(int *array, size_t size)
 				to_switch = temp;
 			}
 		}
-		swap(&array[current], &array[to_switch]);
+
 		if (to_switch != current)
+		{
+			swap(&array[current], &array[to_switch]);
 			print_array(array, size);
+		}
 	}
 }
