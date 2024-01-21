@@ -24,6 +24,8 @@ void selection_sort(int *array, size_t size)
 {
 	size_t current, temp, to_switch;
 
+	if (size <= 1)
+		return;
 	for (current = 0; current < size - 1; current++)
 	{
 		/*
