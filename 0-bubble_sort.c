@@ -7,13 +7,13 @@
  * Return: void
  */
 
-void swap(int *a, int *b)
+void swap(int a, int b)
 {
 	int temp;
 
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	temp = a;
+	a = b;
+	b = temp;
 }
 /**
  * bubble_sort - Sorts an array of integers using the Bubble Sort algorithm.
@@ -34,7 +34,7 @@ void bubble_sort(int *array, size_t size)
 		{
 			if (array[i] > array[i + 1])
 			{
-				swap(&array[i], &array[i + 1]);
+				swap(array[i], array[i + 1]);
 				swapped = 1;
 				print_array(array, size);
 			}
