@@ -13,6 +13,12 @@ void swap(int *a, int *b)
 	*a = *b;
 	*b = temp;
 }
+/**
+ * shell_sort - Sorts an array of integers using the Shell Sort algorithm.
+ * @array: Pointer to the array to be sorted.
+ * @size: Size of the array.
+ * Return: void
+ */
 void shell_sort(int *array, size_t size)
 {
 	size_t i, gap, temp;
