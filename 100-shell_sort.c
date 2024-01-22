@@ -25,9 +25,7 @@ void shell_sort(int *array, size_t size)
 
 	if (size <= 1 || array == NULL)
 		return;
-	for (gap = 1; gap < size / 3; gap = 3 * gap + 1)
-		;
-	while (gap > 0)
+	for (gap = 1; gap < size; gap = 3 * gap + 1)
 	{
 		/* printf("\ngap: %ld\n", gap); */
 		for (i = gap; i < size; i++)
@@ -46,6 +44,5 @@ void shell_sort(int *array, size_t size)
 			}
 		}
 		print_array(array, size);
-		gap /= 3;
 	}
 }

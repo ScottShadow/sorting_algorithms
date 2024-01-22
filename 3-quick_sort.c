@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdlib.h>
 
 /**
  * swap - Swaps two integers.
@@ -34,16 +35,37 @@ void print_array_range(int *array, size_t start, size_t print_size)
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t pivot;
+	size_t pivot, low, high;
+	int top = -1;
+	int *stack = malloc(size * sizeof(int));
 
 	if (array == NULL || size <= 1)
+	{
+		free(stack);
 		return;
-	pivot = partiton(array, size);
+	}
 
-	if (pivot > 0)
-		quick_sort(array, pivot);
-	if (pivot < size - 1)
-		quick_sort(array + pivot + 1, size - pivot - 1);
+	stack[++top] = 0;
+	stack[++top] = size - 1;
+
+	while (top >= 0)
+	{
+		high = stack[top--];
+		low = stack[top--];
+		pivot = partiton(array + low, high - low + 1) + low;
+
+		if (pivot > low)
+		{
+			stack[++top] = low;
+			stack[++top] = pivot - 1;
+		}
+		if (pivot < high)
+		{
+			stack[++top] = pivot + 1;
+			stack[++top] = high;
+		}
+	}
+	free(stack);
 }
 /**
  * partiton - Chooses the last element as the pivot and
@@ -65,11 +87,13 @@ size_t partiton(int *array, size_t size)
 		if (array[current] < array[pivot])
 		{
 			swap(&array[current], &array[temp]);
-			print_array(array, size);
+			print_array_range(array, 0, size);
+
 			temp++;
 		}
 	}
 	swap(&array[current], &array[temp]);
-	print_array(array, size);
+	print_array_range(array, 0, size);
+
 	return (temp);
 }
