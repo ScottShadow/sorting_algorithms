@@ -17,23 +17,27 @@ void shell_sort(int *array, size_t size)
 {
 	size_t i, gap, temp;
 
-	for (gap = size / 2; gap > 0; gap /= 2)
+	for (gap = 1; gap < size / 3; gap = 3 * gap + 1)
+		;
+	while (gap > 0)
 	{
-		for (i = gap + 1; i < size; i++)
+		/* printf("\ngap: %ld\n", gap); */
+		for (i = gap; i < size; i++)
 		{
 			temp = i;
-			while (temp + gap < size && array[temp] > array[temp + gap])
-			{
-				swap(&array[temp], &array[temp + gap]);
-				print_array(array, size);
-				temp += gap;
-			}
+			/* printf("\n temp: %ld\n", temp); */
+
 			while (temp >= gap && array[temp] < array[temp - gap])
 			{
+				/* printf("\n----------comparing %d and %d--------\n", */
+				/* array[temp], array[temp - gap]); */
 				swap(&array[temp], &array[temp - gap]);
-				print_array(array, size);
+
 				temp -= gap;
+				/* printf("\n-----temp: %ld\n", temp); */
 			}
 		}
+		print_array(array, size);
+		gap /= 3;
 	}
 }
