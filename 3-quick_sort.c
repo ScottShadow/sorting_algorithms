@@ -36,7 +36,7 @@ void quick_sort(int *array, size_t size)
 {
 	size_t pivot;
 
-	if (size <= 1)
+	if (array == NULL || size <= 1)
 		return;
 	pivot = partiton(array, size);
 
@@ -46,7 +46,7 @@ void quick_sort(int *array, size_t size)
 		quick_sort(array + pivot + 1, size - pivot - 1);
 }
 /**
- * partition - Chooses the last element as the pivot and
+ * partiton - Chooses the last element as the pivot and
  *             partitions the array accordingly.
  * @array: Pointer to the array to be partitioned.
  * @size: Size of the array.
@@ -65,9 +65,11 @@ size_t partiton(int *array, size_t size)
 		if (array[current] < array[pivot])
 		{
 			swap(&array[current], &array[temp]);
+			print_array(array, size);
 			temp++;
 		}
 	}
 	swap(&array[current], &array[temp]);
+	print_array(array, size);
 	return (temp);
 }
