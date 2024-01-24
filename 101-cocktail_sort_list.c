@@ -20,6 +20,11 @@ void swaplist(listint_t *a, listint_t *b)
 	a->prev = b;
 	b->next = a;
 }
+/**
+ * cocktail_sort_list - Sorts nodes in a doubly linked list.
+ * @list: Pointer to the first node.
+ * Return: void
+ */
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *current, *nextp, *temp;
