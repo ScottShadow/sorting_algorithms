@@ -1,5 +1,12 @@
 #include "sort.h"
 #include <stdint.h>
+/**
+ * findmax - Finds the maximum value in an array of integers.
+ * @array: Pointer to the array.
+ * @size: Size of the array.
+ * Return: The maximum value.
+ */
+
 int findmax(int *array, size_t size)
 
 {
@@ -16,6 +23,13 @@ int findmax(int *array, size_t size)
 
 	return (max);
 }
+/**
+ * counting_sort - Sorts an array of integers using the
+ *  Counting Sort algorithm.
+ * @array: Pointer to the array to be sorted.
+ * @size: Size of the array.
+ * Return: void
+ */
 void counting_sort(int *array, size_t size)
 {
 	int max = 0;
@@ -40,7 +54,6 @@ void counting_sort(int *array, size_t size)
 
 	for (j = 0; j < size; j++)
 		count[array[j]]++;
-
 	for (i = 1; i <= max; i++)
 		count[i] = count[i - 1] + count[i];
 
